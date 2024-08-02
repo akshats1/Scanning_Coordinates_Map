@@ -116,7 +116,7 @@ class Microscope:
     
     def init(self):
         self.board.write("init".encode())
-    
+    """"
     def autofocus(self):
         logging.info("[Autofocus] Starting AutoFocus")
         var = []
@@ -144,7 +144,7 @@ class Microscope:
         self.board.write("zclk,{}".format(1290 - l * 50).encode())
         self.z -= 1290 - l * 50
         self._wait_for_completion()
-
+    """"
     def auto(self):
         obj_value = 10
         z_positions = []
