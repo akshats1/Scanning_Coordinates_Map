@@ -124,33 +124,7 @@ class Microscope:
     def init(self):
         self.board.write("init".encode())
     
-    def autofocus(self):
-        logging.info("[Autofocus] Starting AutoFocus")
-        var = []
-        ze = []
-
-        self.board.write("init".encode())
-        self._wait_for_completion()
-
-        self.board.write("zcclk,{}".format(13500).encode())
-        self.z += 14500
-        self._wait_for_completion()
-
-        for i in range(25):
-            image = self.capture_image()
-            var.append(self.variance(image))
-
-            self.board.write("zcclk,{}".format(50).encode())
-            self.z += 50
-            self._wait_for_completion()
-            ze.append((i + 1) * 50)
-
-        var = np.array(var)
-        l = np.argmax(var)
-
-        self.board.write("zclk,{}".format(1290 - l * 50).encode())
-        self.z -= 1290 - l * 50
-        self._wait_for_completion()
+   
 
     def auto(self):
         obj_value = 10
