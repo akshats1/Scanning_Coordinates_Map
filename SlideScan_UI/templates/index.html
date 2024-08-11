@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Microscope Control</title>
+</head>
+<body>
+    <h1>.</h1>
+    <img src="{{ url_for('video_feed') }}" width="1010" height="880">
+    <br>
+    <button onclick="startScan()">Start Scan</button>
+    <script>
+        function startScan() {
+            fetch('/scan', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => alert(data.message));
+        }
+    </script>
+</body>
+</html>
+
