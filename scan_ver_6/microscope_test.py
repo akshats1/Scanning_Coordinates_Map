@@ -41,10 +41,10 @@ class Microscope:
         self.y += steps
 
     def moveyc(self, steps):
-        command = "yclk,{}".format(steps)
-        self.board.write(command.encode("utf-8"))
+        self.board.write("yclk,{}".format(steps).encode())
+        self._wait_for_completion()
         self.y -= steps
-        sleep(1)
+        
 
     def movezclock(self, distance):
         self.board.write("zclk,{}".format(distance).encode())
